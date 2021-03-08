@@ -240,7 +240,7 @@ describe('UniswapV2Pair', () => {
     expect(await pair.price0CumulativeLast()).to.eq(initialPrice[0].mul(10).add(newPrice[0].mul(10)))
     expect(await pair.price1CumulativeLast()).to.eq(initialPrice[1].mul(10).add(newPrice[1].mul(10)))
     expect((await pair.getReserves())[2]).to.eq(blockTimestamp + 20)
-  })
+  }).retries(10)
 
   it('feeTo:off', async () => {
     const token0Amount = expandTo18Decimals(1000)
